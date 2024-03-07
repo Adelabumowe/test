@@ -1,0 +1,33 @@
+name: "terraform lint"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: "Terraform lint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423  # tag:v2.6.0
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # tag:v2.5.0
+        with:
+          fetch-depth: 1
+
+      - uses: hashicorp/setup-terraform@a1502cd9e758c50496cc9ac5308c4843bcd56d36 
+      
+      - name: Lint Terraform
+        run: terraform fmt -recursive -check
+        working-directory: v2/internal/attacktechniques
+        

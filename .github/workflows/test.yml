@@ -1,0 +1,62 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423
+        with:
+          egress-policy: block
+          allowed-endpoints:
+            github.com:443
+            proxy.golang.org:443
+            storage.googleapis.com:443
+            objects.githubusercontent.com:443
+            go.dev:443
+            golang.org:443
+            api.github.com:443
+            *.actions.githubusercontent.com:443
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - name: Set up Go
+        uses: actions/setup-go@0c52d547c9bc32b1aa3301fd7a9cb496313a4491
+        with:
+          go-version: 1.18
+
+      - name: Run unit tests
+        run: make test
+
+  build-docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@1b05615854632b887b69ae1be8cbefe72d3ae423
+        with:
+          egress-policy: block
+          allowed-endpoints:
+            auth.docker.io:443
+            dl-cdn.alpinelinux.org:443
+            github.com:443
+            production.cloudflare.docker.com:443
+            proxy.golang.org:443
+            registry-1.docker.io:443
+            storage.googleapis.com:443
+            *.actions.githubusercontent.com:443
+      - name: Checkout repository
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
+
+      - name: Build local Docker image
+        run: docker build .
