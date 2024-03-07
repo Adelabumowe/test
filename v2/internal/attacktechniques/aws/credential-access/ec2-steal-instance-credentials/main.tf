@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-ec2-steal-credentials"
+  resource_prefix = "stratus-red-team-ec2-steal-credentials-new"
 }
 
 data "aws_availability_zones" "available" {
