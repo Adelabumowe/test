@@ -19,7 +19,11 @@ provider "aws" {
 }
 
 locals {
+<<<<<<< HEAD
   resource_prefix = "stratus-red-team-ec2-steal-credentials-new"
+=======
+  resource_prefix = "acme-prod"
+>>>>>>> 9210ce7 (changed the prefix name)
 }
 
 data "aws_availability_zones" "available" {

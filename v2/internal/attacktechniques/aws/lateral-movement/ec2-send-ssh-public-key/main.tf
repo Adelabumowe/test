@@ -18,7 +18,7 @@ provider "aws" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-ec2-sshpublickey-lateral-movement"
+  resource_prefix = "acme-prod"
 }
 
 variable "instance_count" {

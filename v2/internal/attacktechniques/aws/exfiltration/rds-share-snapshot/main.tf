@@ -24,7 +24,7 @@ resource "random_password" "password" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-share-snap"
+  resource_prefix = "acme-prod"
 }
 
 data "aws_availability_zones" "available" {

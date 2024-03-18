@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-backdoor-r"
+  resource_prefix = "acme-prod"
 }
 
 resource "aws_iam_role" "legit-role" {

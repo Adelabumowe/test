@@ -24,7 +24,7 @@ resource "random_string" "suffix" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-ct-stop"
+  resource_prefix = "acme-prod"
 }
 
 locals {

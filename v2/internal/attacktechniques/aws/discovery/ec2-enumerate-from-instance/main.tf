@@ -19,7 +19,7 @@ provider "aws" {
 }
 
 locals {
-  resource_prefix = "stratus-red-team-ec2-enumerate-new"
+  resource_prefix = "acme-prod"
 }
 
 data "aws_availability_zones" "available" {
